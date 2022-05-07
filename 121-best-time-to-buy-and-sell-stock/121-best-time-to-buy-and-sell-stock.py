@@ -7,8 +7,7 @@ class Solution:
         maximumProfit = -n
         currentProfit = 0
         for i in range(1, n):
-            profit = prices[i] - prices[i-1]
-            currentProfit += profit
+            currentProfit += prices[i] - prices[i-1]
             if currentProfit > maximumProfit:
                 maximumProfit = currentProfit
             if currentProfit < 0:

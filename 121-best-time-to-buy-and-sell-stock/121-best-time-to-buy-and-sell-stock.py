@@ -6,11 +6,9 @@ class Solution:
             return 0
         maximumProfit = -n
         currentProfit = 0
-        profits = [0]*n
-        profits[0] = prices[0]
         for i in range(1, n):
-            profits[i] = prices[i] - prices[i-1]
-            currentProfit += profits[i]
+            profit = prices[i] - prices[i-1]
+            currentProfit += profit
             if currentProfit > maximumProfit:
                 maximumProfit = currentProfit
             if currentProfit < 0:

@@ -6,11 +6,12 @@ class Node:
 class Trie:
     def __init__(self):
         self.root = Node()
+        self.__offset = ord('a')
 
     def insert(self, word: str) -> None:
         current = self.root
         for ch in word:
-            index = ord(ch) - ord('a')
+            index = ord(ch) - self.__offset
             if current.children[index] == None:
                 current.children[index] = Node()
             current = current.children[index]
@@ -19,7 +20,7 @@ class Trie:
     def search(self, word: str) -> bool:
         current = self.root
         for ch in word:
-            index = ord(ch) - ord('a')
+            index = ord(ch) - self.__offset
             if current.children[index] == None:
                 return False
             current = current.children[index]
@@ -28,7 +29,7 @@ class Trie:
     def startsWith(self, prefix: str) -> bool:
         current = self.root
         for ch in prefix:
-            index = ord(ch) - ord('a')
+            index = ord(ch) - self.__offset
             if current.children[index] == None:
                 return False
             current = current.children[index]

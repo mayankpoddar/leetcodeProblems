@@ -1,6 +1,6 @@
 class Node:
     def __init__(self):
-        self.children = [None]*26 # Since only lowercase english
+        self.children = {}
         self.endOfWord = False
 
 class Trie:
@@ -11,28 +11,26 @@ class Trie:
     def insert(self, word: str) -> None:
         current = self.root
         for ch in word:
-            index = ord(ch) - self.__offset
-            if current.children[index] == None:
-                current.children[index] = Node()
-            current = current.children[index]
+            if current.children.get(ch, None) == None:
+                current.children[ch] = Node()
+            current = current.children[ch]
         current.endOfWord = True
 
     def search(self, word: str) -> bool:
         current = self.root
         for ch in word:
-            index = ord(ch) - self.__offset
-            if current.children[index] == None:
+            if current.children.get(ch, None) == None:
                 return False
-            current = current.children[index]
+            current = current.children[ch]
         return current.endOfWord
 
     def startsWith(self, prefix: str) -> bool:
         current = self.root
         for ch in prefix:
             index = ord(ch) - self.__offset
-            if current.children[index] == None:
+            if current.children.get(ch, None) == None:
                 return False
-            current = current.children[index]
+            current = current.children[ch]
         return True
 
 
